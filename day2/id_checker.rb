@@ -48,7 +48,7 @@ def part_2_validator(id_string:)
 
     string_components = id_string.scan(/.{#{string_length}}/)
 
-    invalid_id = string_components.join().length == id_string.length && string_components.size > 1 && string_components.uniq.size == 1
+    invalid_id = string_components.join().length != id_string.length && string_components.uniq.size != 1
   end
 
   invalid_id
@@ -58,5 +58,9 @@ def early_part_2_validator(id_string:)
   id_string.split("").uniq.size == 1 || part_1_validator(id_string:)
 end
 
+time = Time.now
 puts "The total sum of all the invalid ids for part 1 is #{invalid_id_finder.sum}"
+puts "process took #{Time.now - time}"
+time = Time.now
 puts "The total sum of all the invalid ids for part 2 is #{invalid_id_finder(part_2: true).sum}"
+puts "process took #{Time.now - time}"
